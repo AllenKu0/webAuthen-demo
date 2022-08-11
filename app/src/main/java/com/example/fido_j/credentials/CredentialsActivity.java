@@ -32,11 +32,6 @@ public class CredentialsActivity extends AppCompatActivity {
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
     private ActivityCreditialsBinding binding;
-    private Bundle bundle;
-    private Context context;
-    //    private BiometricManager manager;
-//    private BiometricPrompt.PromptInfo prompt;
-//    private BiometricPrompt biometricPrompt;
     private CredentialsAdapter adapter;
     private ArrayList<String> id=new ArrayList<>(),publicKey=new ArrayList<>();
     private String Preferences_Username_Key="USER_NAME_KEY";
@@ -60,7 +55,6 @@ public class CredentialsActivity extends AppCompatActivity {
 //        );
         preferences= getSharedPreferences("Save",0);
         editor=preferences.edit();
-        context=this;
         init();
 //        manager=BiometricManager.from(context);
 //        switch (manager.canAuthenticate()){

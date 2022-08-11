@@ -1,16 +1,11 @@
 package com.example.fido_j.api;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
-import android.preference.PreferenceDataStore;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-
-import com.example.fido_j.Account;
 import com.example.fido_j.BuildConfig;
 import com.example.fido_j.ShareKeyHandle;
 import com.google.android.gms.fido.common.Transport;
@@ -32,8 +27,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collections;
@@ -86,7 +79,7 @@ public class AuthApi {
             .build();
 
     private final String BASE_URL = "https://fast-yielding-suit.glitch.me/auth";
-    public void username(String username, AccountInterface accountInterface){
+    public void userNameApi(String username, AccountInterface accountInterface){
         this.username=username;
         MediaType JSON
                 = MediaType.parse("application/json; charset=utf-8");
@@ -119,7 +112,7 @@ public class AuthApi {
         });
 
     }
-    public void password(String password,PasswordInterface passwordInterface){
+    public void passwordApi(String password, PasswordInterface passwordInterface){
         MediaType JSON
                 = MediaType.parse("application/json; charset=utf-8");
         JSONObject json = new JSONObject();
@@ -148,7 +141,7 @@ public class AuthApi {
             }
         });
     }
-    public void registerRequest(RequestInterface requestInterface){
+    public void registerRequestApi(RequestInterface requestInterface){
         MediaType JSON
                 = MediaType.parse("application/json; charset=utf-8");
         JSONObject json = new JSONObject();
@@ -235,7 +228,7 @@ public class AuthApi {
             }
         });
     }
-    public void registerResponse(String keyHandle,String datajson,String attestationObject,PublicKeyCredential credential,ResponseInterface responseInterface){
+    public void registerResponseApi(String keyHandle, String datajson, String attestationObject, PublicKeyCredential credential, ResponseInterface responseInterface){
         MediaType JSON
                 = MediaType.parse("application/json; charset=utf-8");
         JSONObject json = new JSONObject();
@@ -283,7 +276,7 @@ public class AuthApi {
             }
         });
     }
-    public void signinRequest(String credId, Context context, SignRequestInterface signRequestInterface){
+    public void signinRequestApi(String credId, Context context, SignRequestInterface signRequestInterface){
         ShareKeyHandle storeHandle = new ShareKeyHandle(context);
         MediaType JSON
                 = MediaType.parse("application/json; charset=utf-8");

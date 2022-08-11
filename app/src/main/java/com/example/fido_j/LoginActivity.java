@@ -4,48 +4,30 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender;
-import android.media.audiofx.DynamicsProcessing;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
-import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.example.fido_j.api.AuthApi;
-import com.example.fido_j.credentials.CredentialsActivity;
 import com.example.fido_j.databinding.ActivityLoginBinding;
 import com.example.fido_j.username.MainActivity;
 import com.google.android.gms.fido.Fido;
 import com.google.android.gms.fido.fido2.Fido2ApiClient;
-import com.google.android.gms.fido.fido2.Fido2PendingIntent;
 import com.google.android.gms.fido.fido2.api.common.AuthenticatorAssertionResponse;
-import com.google.android.gms.fido.fido2.api.common.AuthenticatorAttestationResponse;
 import com.google.android.gms.fido.fido2.api.common.AuthenticatorErrorResponse;
-import com.google.android.gms.fido.fido2.api.common.EC2Algorithm;
 import com.google.android.gms.fido.fido2.api.common.PublicKeyCredential;
-import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialCreationOptions;
-import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialParameters;
 import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialRequestOptions;
-import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialRpEntity;
-import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialType;
-import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialUserEntity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.security.SecureRandom;
-import java.util.Collections;
-import java.util.List;
 
 import kotlin.text.Charsets;
 
@@ -111,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
             String username = binding.etUsername.getText().toString();
             if(!"".equals(username)){
                 //建publicKeyCredentialRequestOptions
-                api.username(username, new AuthApi.AccountInterface() {
+                api.userNameApi(username, new AuthApi.AccountInterface() {
                     @Override
                     public void AccountSuccess(String result) {
                         try {
@@ -122,10 +104,10 @@ public class LoginActivity extends AppCompatActivity {
                                 publicKey = credentials.getJSONObject(0).getString("publicKey");
                                 credId = credentials.getJSONObject(0).getString("credId");
                             }//後續不用靠password登入，密碼打api為空格
-                            api.password(" ", new AuthApi.PasswordInterface() {
+                            api.passwordApi(" ", new AuthApi.PasswordInterface() {
                                 @Override
                                 public void PasswordSuccess() {
-                                    api.signinRequest(credId,context, new AuthApi.SignRequestInterface() {
+                                    api.signinRequestApi(credId,context, new AuthApi.SignRequestInterface() {
                                         @Override
                                         public void SignRequestSuccess(PublicKeyCredentialRequestOptions publicKeyCredentialRequestOptions) {
                                             requestOptions=publicKeyCredentialRequestOptions;

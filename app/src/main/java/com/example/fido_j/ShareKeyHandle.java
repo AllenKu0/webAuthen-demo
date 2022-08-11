@@ -13,18 +13,11 @@ import android.util.Log;
 
 public class ShareKeyHandle {
     private Context context;
-    public static SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
     private String keyHandle;
     public ShareKeyHandle(Context context){
         this.context = context;
-//        preferences= context.getSharedPreferences("Save",MODE_PRIVATE);
-//        editor=preferences.edit();
     }
-//    public static SharedPreferences getSharesPreference(){
-//
-//        return preferences;
-//    }
+
     public void saveKeyHandle(byte[] keyHandle){
         Log.e("TAG", "context: "+context );
         Log.e("TAG", "loadKeyHandle: "+keyHandle );

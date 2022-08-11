@@ -114,13 +114,13 @@ public class MainActivity extends AppCompatActivity {
             username=binding.etUsername.getText().toString();
             password=binding.etPassword.getText().toString();
             if(!"".equals(username)||!"".equals(password)) {
-                api.username(username, new AuthApi.AccountInterface() {
+                api.userNameApi(username, new AuthApi.AccountInterface() {
                     @Override
                     public void AccountSuccess(String result) {
-                        api.password(password, new AuthApi.PasswordInterface() {
+                        api.passwordApi(password, new AuthApi.PasswordInterface() {
                             @Override
                             public void PasswordSuccess() {
-                                api.registerRequest(new AuthApi.RequestInterface() {
+                                api.registerRequestApi(new AuthApi.RequestInterface() {
                                     @Override
                                     public void RequestSuccess(PublicKeyCredentialCreationOptions publicKeyCredentialCreationOptions) {
                                         options = publicKeyCredentialCreationOptions;
@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
         String clientDataJsonBody = new String(response.getClientDataJSON(), Charsets.UTF_8).getBytes(StandardCharsets.UTF_8).toString();
         String clientDataJson = Base64.encodeToString(response.getClientDataJSON(),Base64.NO_WRAP);
         String attestationObjectBase64 = Base64.encodeToString(response.getAttestationObject(), Base64.NO_WRAP);
-        api.registerResponse(keyHandleBase64,clientDataJson,attestationObjectBase64,credential, new AuthApi.ResponseInterface() {
+        api.registerResponseApi(keyHandleBase64,clientDataJson,attestationObjectBase64,credential, new AuthApi.ResponseInterface() {
             @Override
             public void ResponseSuccess(JSONObject jsonObject) {
 //                Toast.makeText(getApplicationContext(),"註冊成功",Toast.LENGTH_SHORT).show();
