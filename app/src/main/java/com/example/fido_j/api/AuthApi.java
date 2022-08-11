@@ -85,7 +85,7 @@ public class AuthApi {
             })
             .build();
 
-    private final String BASE_URL = "https://entertaining-maddening-beluga.glitch.me/auth";
+    private final String BASE_URL = "https://fast-yielding-suit.glitch.me/auth";
     public void username(String username, AccountInterface accountInterface){
         this.username=username;
         MediaType JSON
@@ -320,6 +320,8 @@ public class AuthApi {
                                 transports
                         );
                     }
+                    //storeHandle.loadKeyHandle(),
+                    // allowCredentials.getString("id").getBytes(StandardCharsets.UTF_8),
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         requestOptions = new PublicKeyCredentialRequestOptions.Builder()
                                 .setRpId(String.valueOf(json.get("rpId")))
